@@ -95,27 +95,48 @@ Acceder a la aplicación en: `http://localhost:8000`
 
 -----
 
-## Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
-```text
-proyecto-logica-difusa/
-├── core/                      # Configuración principal del proyecto
-│   ├── settings.py            # Configuración Django
-│   ├── urls.py                # Rutas principales
-│   └── ...
-├── fuzzy_system/              # Aplicación de lógica difusa
-│   ├── fuzzy_logic/           # Lógica de inferencia difusa
-│   │   ├── membership.py      # Funciones de membresía
-│   │   ├── rules.py           # Definición de reglas
-│   │   └── inference.py       # Motor de inferencia
-│   ├── views/                 # Controladores
-│   ├── models.py              # Modelos de datos
-│   ├── templates/             # Plantillas HTML
-│   └── ...
-├── static/                    # Archivos estáticos
-├── media/                     # Archivos subidos
-├── manage.py                  # Script de administración
-└── requirements.txt            # Dependencias del proyecto
+
+
+```
+
+mi_proyecto_django/
+
+├── manage.py                       # Script principal de Django
+
+├── db.sqlite3                      # Base de datos SQLite
+
+├── requirements.txt                # Dependencias del proyecto
+
+├── mi_proyecto/                    # Configuración del proyecto
+
+│   ├── settings.py                 # Configuración principal
+
+│   ├── urls.py                     # URLs globales
+
+│   └── ...
+
+└── sistema_fuzzy/                  # Aplicación principal
+
+    ├── models.py                   # Modelos de base de datos
+
+    ├── views.py                    # Lógica de vistas
+
+    ├── urls.py                     # URLs de la aplicación
+
+    ├── templates/                  # Plantillas HTML
+
+    │   ├── home.html
+
+    │   ├── about_mamdani.html
+
+    │   ├── membership_functions.html
+
+    │   └── ...
+
+    └── migrations/                 # Migraciones de BD
+
 ```
 
 -----
@@ -219,27 +240,22 @@ TIME_MEMBERSHIP = {
 
 -----
 
-## Contribución
-
-¡Las contribuciones son bienvenidas\! Sigue estos pasos para contribuir:
-
-1.  Haz fork del proyecto.
-2.  Crea una rama para tu nueva característica: `git checkout -b feature/awesome-feature`.
-3.  Haz commit de tus cambios: `git commit -am 'Add awesome feature'`.
-4.  Haz push a la rama: `git push origin feature/awesome-feature`.
-5.  Abre un Pull Request.
-
------
-
 ## Licencia
 
-Distribuido bajo la **licencia MIT**. Consulta el archivo `LICENSE` para más información.
+Distribuido bajo la **por definir aun**.
 
 -----
 
 ## Contacto
 
-  * Matías Sánchez - `@tu-usuario` - `email@example.com`
-  * Robert Reyes - `@tu-usuario` - `email@example.com`
+  * Matias Sanchez Muñoz- `@SanchezMMatias` - `msanchezmu@utem.cl`
+  * Robert Reyes Mardones - `@`                 - `robert.reyesm@utem.cl`
 
 **Enlace del proyecto:** [https://github.com/tu-usuario/proyecto-logica-difusa](https://github.com/tu-usuario/proyecto-logica-difusa)
+
+## 🙏 Agradecimientos
+
+- Profesor Jorge Morris arredondo por su acompañamiento y tutoria constante.
+
+---
+
