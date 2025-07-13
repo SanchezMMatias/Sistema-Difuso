@@ -1,4 +1,4 @@
-# Sistema de Análisis Difuso con Django
+#  Modelo y prototipo predictivo para medir la satisfacción de un cliente, usando Lógica Difusa.
 
 Una aplicación web desarrollada en Django que implementa un sistema de análisis de satisfacción utilizando lógica difusa con el modelo Mamdani. El sistema permite procesar datos desde archivos CSV y generar análisis detallados con visualizaciones interactivas.
 
