@@ -86,6 +86,7 @@ python manage.py createsuperuser
 ```
 
 ### 6\. Ejecutar servidor de desarrollo
+![correr la app local](https://github.com/user-attachments/assets/7083d2a8-d28d-462a-9cba-0fd1ed8f4f21)
 
 ```bash
 python manage.py runserver
@@ -239,6 +240,9 @@ TIME_MEMBERSHIP = {
 | Problemas con archivos CSV    | Verificar formato y columnas requeridas       |
 
 -----
+![Despliegue y vista de aplicación web](https://github.com/user-attachments/assets/dcdac5fc-08fc-4f1e-bc89-c0fa87f58de4)
+
+
 
 ## Licencia
 
