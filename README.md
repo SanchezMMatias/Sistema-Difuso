@@ -89,52 +89,193 @@ mi_proyecto_django/
     │   └── ...
     └── migrations/                 # Migraciones de BD
 ```
+##########################
+# 📚 Análisis de Librerías del Sistema Fuzzy
 
-## 🔧 Dependencias Principales  * (**Django**: Framework web principal)
-                                 * (**NumPy** : Cálculo numérico para operaciones difusas)
-                                 * (**Pandas** : Procesamiento y análisis de datos CSV)
-                                 * (**Matplotlib** : Generación de gráficos y visualizaciones)
+Este documento describe el uso de cada librería en el sistema de lógica difusa implementado en Django.
 
-## Análisis de librerías utilizadas en el proyecto
+## 🔧 Librerías del Framework
 
-1. bcrypt
-   - Propósito: Hashing de contraseñas de forma segura.
-   - Evaluación: ✔️ Aceptable. Amplia adopción y buenas prácticas de seguridad.
+### Django
+```python
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from django.http import HttpResponseRedirect, JsonResponse
+from django.urls import reverse
+from django.conf import settings as django_settings
+```
 
-2. cookie-parser
-   - Propósito: Analizar cookies adjuntas a las solicitudes HTTP.
-   - Evaluación: ✔️ Aceptable. Ligera y ampliamente usada con Express.
+**Uso en el proyecto:**
+- **`render`**: Renderiza templates HTML con contexto de datos
+- **`get_object_or_404`**: Obtiene objetos de la base de datos o retorna error 404
+- **`redirect`**: Redirecciona a otras vistas después de operaciones
+- **`messages`**: Sistema de mensajes flash para notificaciones al usuario
+- **`JsonResponse`**: Retorna respuestas JSON para APIs (`api_stats`)
+- **`django_settings`**: Acceso a configuraciones del proyecto (ruta del CSV)
 
-3. cors
-   - Propósito: Habilitar CORS (Cross-Origin Resource Sharing).
-   - Evaluación: ✔️ Aceptable. Útil para controlar el acceso entre dominios.
+## 📊 Librerías de Análisis de Datos
 
-4. dotenv
-   - Propósito: Cargar variables de entorno desde un archivo `.env`.
-   - Evaluación: ✔️ Aceptable. Mejora la configuración y seguridad del entorno.
+### Pandas
+```python
+import pandas as pd
+```
 
-5. express
-   - Propósito: Framework web para Node.js.
-   - Evaluación: ✔️ Aceptable. Muy popular, flexible y bien soportado.
+**Uso específico:**
+- **Carga de datos**: `pd.read_csv(csv_path)` - Lee el dataset Netflix_Userbase_Frecuencia.csv
+- **Manipulación de columnas**: Renombrado y verificación de columnas requeridas
+- **Análisis estadístico**: `df.describe()` para generar estadísticas descriptivas
+- **Indexación**: `df.loc[max_satisfaction_idx]` para acceder a registros específicos
+- **Conversión**: `df.to_dict('records')` para convertir DataFrames a diccionarios
 
-6. express-session
-   - Propósito: Manejar sesiones en Express.
-   - Evaluación: ✔️ Aceptable. Uso común para autenticación basada en sesiones.
+### NumPy
+```python
+import numpy as np
+```
 
-7. mongoose
-   - Propósito: ODM (Object Data Modeling) para MongoDB.
-   - Evaluación: ✔️ Aceptable. Simplifica el trabajo con MongoDB.
+**Uso específico:**
+- **Rangos numéricos**: `np.arange(0, 101, 1)` para crear rangos de valores
+- **Operaciones vectoriales**: `np.zeros_like()`, `np.maximum()`, `np.minimum()`
+- **Agregaciones**: `np.sum()` para cálculos de defuzzificación
+- **Comparaciones**: `np.isnan()` para validar resultados válidos
+- **Mapeo de colores**: `np.linspace()` para gradientes de colores en gráficos
 
-8. nodemon
-   - Propósito: Recargar automáticamente el servidor al detectar cambios.
-   - Evaluación: ✔️ Aceptable. Solo para desarrollo, mejora la productividad.
+## 📈 Librerías de Visualización
 
-9. qrcode
-   - Propósito: Generar códigos QR desde texto o URLs.
-   - Evaluación: ✔️ Aceptable. Librería simple y funcional para generación de QR.
+### Matplotlib
+```python
+import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')  # Backend sin GUI para servidor
+```
 
-Resumen:
-Todas las librerías utilizadas son seguras, bien mantenidas y cumplen funciones específicas útiles dentro del ecosistema de Node.js. No se detectan dependencias obsoletas ni innecesarias.
+**Configuración global:**
+```python
+plt.style.use('default')
+plt.rcParams['figure.figsize'] = (12, 8)
+plt.rcParams['font.size'] = 10
+plt.rcParams['axes.grid'] = True
+plt.rcParams['grid.alpha'] = 0.3
+```
+
+**Uso específico:**
+- **Gráficos de líneas**: Visualización de funciones de membresía trapezoidales y triangulares
+- **Subplots**: `plt.subplots(2, 2)` para crear layouts de múltiples gráficos
+- **Personalización**: Colores, etiquetas, leyendas y títulos
+- **Rellenos**: `ax.fill_between()` para áreas bajo las curvas
+- **Marcadores**: `ax.scatter()` para puntos específicos en las gráficas
+- **Exportación**: Conversión a base64 para embedding en HTML
+
+**Tipos de gráficos generados:**
+1. **Funciones de membresía**: 4 subgráficos mostrando las funciones difusas
+2. **Análisis detallado**: Visualización específica de un registro con grados de membresía
+3. **Gráficos de barras**: Representación de grados de membresía activos
+
+## 🔄 Librerías de Utilidad
+
+### Base64
+```python
+import base64
+```
+
+**Uso específico:**
+- **Codificación de imágenes**: `base64.b64encode(plot_data).decode()` 
+- **Embedding en HTML**: Convierte gráficos matplotlib a strings base64 para mostrar en templates
+
+### IO (BytesIO)
+```python
+from io import BytesIO
+```
+
+**Uso específico:**
+- **Buffer de memoria**: `BytesIO()` para manejar datos de imágenes en memoria
+- **Optimización**: Evita escribir archivos temporales al disco
+- **Pipeline de datos**: Facilita el flujo de datos entre matplotlib y base64
+
+### OS
+```python
+import os
+```
+
+**Uso específico:**
+- **Rutas de archivos**: `os.path.join()` para construcción de rutas multiplataforma
+- **Validación de archivos**: `os.path.exists()` para verificar existencia del CSV
+
+### JSON
+```python
+import json
+```
+
+**Uso específico:**
+- **Respuestas API**: Manejo de datos JSON en la función `api_stats`
+- **Serialización**: Conversión de datos Python a formato JSON
+
+### Warnings
+```python
+import warnings
+warnings.filterwarnings('ignore')
+```
+
+**Uso específico:**
+- **Supresión de advertencias**: Oculta warnings de pandas/numpy durante el procesamiento
+
+## 🧮 Algoritmos de Lógica Difusa
+
+### Funciones de Membresía Implementadas
+
+```python
+def trapmf(x, a, b, c, d):
+    """Función de membresía trapezoidal"""
+    # Implementación manual sin scikit-fuzzy
+    
+def trimf(x, a, b, c):
+    """Función de membresía triangular"""
+    # Implementación manual sin scikit-fuzzy
+```
+
+**Características:**
+- **Implementación nativa**: Sin dependencias externas de lógica difusa
+- **Funciones trapezoidales**: Para variables con rangos amplios
+- **Funciones triangulares**: Para variables con picos específicos
+- **Evaluación punto a punto**: Cálculo eficiente de grados de membresía
+
+## 🔍 Flujo de Procesamiento
+
+### Pipeline de Datos
+1. **Carga**: Pandas lee el CSV
+2. **Validación**: Verificación de columnas requeridas
+3. **Procesamiento**: Aplicación de reglas difusas a cada registro
+4. **Visualización**: Matplotlib genera gráficos
+5. **Presentación**: Django renderiza resultados en HTML
+
+### Variables del Sistema
+- **Entrada**: Tiempo de suscripción, Frecuencia de uso, Tipo de suscripción
+- **Salida**: Nivel de satisfacción predicho
+- **Reglas**: 27 reglas difusas implementadas
+
+## 📋 Dependencias Requeridas
+
+```txt
+Django>=3.2
+pandas>=1.3.0
+numpy>=1.21.0
+matplotlib>=3.4.0
+```
+
+## 🚀 Optimizaciones Implementadas
+
+- **Backend Agg**: Matplotlib sin GUI para entornos de servidor
+- **Manejo de memoria**: BytesIO para procesamiento eficiente de imágenes
+- **Caching**: Configuración de matplotlib para reutilización
+- **Validación robusta**: Manejo de errores y datos faltantes
+
+## 📊 Métricas del Sistema
+
+- **Total de reglas**: 27 reglas difusas
+- **Variables de entrada**: 3 (tiempo, frecuencia, suscripción)
+- **Variable de salida**: 1 (satisfacción)
+- **Funciones de membresía**: 9 funciones implementadas
+- **Precisión del sistema**: 95.2% (valor mostrado en dashboard)
+#####################
 
 
 ## 📊 Funcionalidades
