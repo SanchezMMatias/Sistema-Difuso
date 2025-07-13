@@ -90,12 +90,52 @@ mi_proyecto_django/
     └── migrations/                 # Migraciones de BD
 ```
 
-## 🔧 Dependencias Principales
+## 🔧 Dependencias Principales  * (**Django**: Framework web principal)
+                                 * (**NumPy** : Cálculo numérico para operaciones difusas)
+                                 * (**Pandas** : Procesamiento y análisis de datos CSV)
+                                 * (**Matplotlib** : Generación de gráficos y visualizaciones)
 
-- **Django**: Framework web principal
-- **NumPy**: Cálculo numérico para operaciones difusas
-- **Pandas**: Procesamiento y análisis de datos CSV
-- **Matplotlib**: Generación de gráficos y visualizaciones
+## Análisis de librerías utilizadas en el proyecto
+
+1. bcrypt
+   - Propósito: Hashing de contraseñas de forma segura.
+   - Evaluación: ✔️ Aceptable. Amplia adopción y buenas prácticas de seguridad.
+
+2. cookie-parser
+   - Propósito: Analizar cookies adjuntas a las solicitudes HTTP.
+   - Evaluación: ✔️ Aceptable. Ligera y ampliamente usada con Express.
+
+3. cors
+   - Propósito: Habilitar CORS (Cross-Origin Resource Sharing).
+   - Evaluación: ✔️ Aceptable. Útil para controlar el acceso entre dominios.
+
+4. dotenv
+   - Propósito: Cargar variables de entorno desde un archivo `.env`.
+   - Evaluación: ✔️ Aceptable. Mejora la configuración y seguridad del entorno.
+
+5. express
+   - Propósito: Framework web para Node.js.
+   - Evaluación: ✔️ Aceptable. Muy popular, flexible y bien soportado.
+
+6. express-session
+   - Propósito: Manejar sesiones en Express.
+   - Evaluación: ✔️ Aceptable. Uso común para autenticación basada en sesiones.
+
+7. mongoose
+   - Propósito: ODM (Object Data Modeling) para MongoDB.
+   - Evaluación: ✔️ Aceptable. Simplifica el trabajo con MongoDB.
+
+8. nodemon
+   - Propósito: Recargar automáticamente el servidor al detectar cambios.
+   - Evaluación: ✔️ Aceptable. Solo para desarrollo, mejora la productividad.
+
+9. qrcode
+   - Propósito: Generar códigos QR desde texto o URLs.
+   - Evaluación: ✔️ Aceptable. Librería simple y funcional para generación de QR.
+
+Resumen:
+Todas las librerías utilizadas son seguras, bien mantenidas y cumplen funciones específicas útiles dentro del ecosistema de Node.js. No se detectan dependencias obsoletas ni innecesarias.
+
 
 ## 📊 Funcionalidades
 
