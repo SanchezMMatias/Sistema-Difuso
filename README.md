@@ -242,7 +242,7 @@ TIME_MEMBERSHIP = {
 
 ## Licencia
 
-Distribuido bajo la **por definir aun**.
+Distribuido bajo la licencia **por definir aun**.
 
 -----
 
