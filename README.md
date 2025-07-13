@@ -255,7 +255,7 @@ Distribuido bajo la **por definir aun**.
 
 ## 🙏 Agradecimientos
 
-- Profesor Jorge Morris arredondo por su acompañamiento y tutoria constante.
+- Profesor Jorge Morris Arredondo por su acompañamiento y tutoria constante.
 
 ---
 
