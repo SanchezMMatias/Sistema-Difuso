@@ -1,357 +1,245 @@
-#  Modelo y prototipo predictivo para medir la satisfacción de un cliente, usando Lógica Difusa.
+# Sistema de Análisis de Satisfacción de Clientes con Lógica Difusa
 
-Una aplicación web desarrollada en Django que implementa un sistema de análisis de satisfacción utilizando lógica difusa con el modelo Mamdani. El sistema permite procesar datos desde archivos CSV y generar análisis detallados con visualizaciones interactivas.
+[](https://opensource.org/licenses/MIT)
+[](https://www.python.org/)
+[](https://www.djangoproject.com/)
 
-## 🚀 Características
+Aplicación web para la evaluación predictiva de la satisfacción de clientes, implementando un sistema de inferencia difusa basado en el modelo Mamdani. Esta herramienta procesa datos de entrada, aplica reglas difusas y genera análisis detallados con visualizaciones interactivas.
 
-- **Análisis de Lógica Difusa**: Implementación del modelo Mamdani con 27 reglas difusas predefinidas
-- **Procesamiento de Datos**: Carga y validación de archivos CSV con análisis automático
-- **Visualizaciones**: Generación de gráficos de funciones de membresía y análisis estadísticos
-- **Interfaz Interactiva**: Sección dedicada para experimentar con funciones de membresía
-- **Contenido Educativo**: Información detallada sobre lógica difusa y el modelo Mamdani
+-----
 
-## 📋 Requisitos Previos
+## Características Principales
 
-- Python 3.8+
-- pip (gestor de paquetes de Python)
-- Git
+### 🧠 Motor de Inferencia Difusa
 
-## 🛠️ Instalación
+  * Implementación completa del **modelo Mamdani**.
+  * **27 reglas difusas** preconfiguradas.
+  * **Funciones de membresía personalizables** (triangulares y trapezoidales).
+  * Sistema de **defuzzificación por método del centroide**.
 
-### 1. Clonar el Repositorio
+### 📊 Procesamiento de Datos
+
+  * Carga y **validación automática de archivos CSV**.
+  * **Análisis estadístico descriptivo**.
+  * **Normalización y preparación de datos**.
+  * Detección y **manejo de valores atípicos**.
+
+### 📈 Visualización Interactiva
+
+  * **Gráficos de funciones de membresía**.
+  * Representación de **grados de activación**.
+  * Resultados de **defuzzificación**.
+  * **Dashboard de análisis completo**.
+
+### 🎓 Contenido Educativo
+
+  * Explicaciones detalladas sobre **lógica difusa**.
+  * Guía del **modelo Mamdani**.
+  * **Ejemplos prácticos** de aplicación.
+
+-----
+
+## Requisitos del Sistema
+
+  * **Python 3.8** o superior
+  * **pip** (sistema de gestión de paquetes)
+  * **Git** (control de versiones)
+  * Navegador web moderno
+
+-----
+
+## Instalación y Configuración
+
+### 1\. Clonar el repositorio
 
 ```bash
-git clone <URL_DEL_REPOSITORIO>
-cd mi_proyecto_django
+git clone https://github.com/tu-usuario/proyecto-logica-difusa.git
+cd proyecto-logica-difusa
 ```
 
-### 2. Crear un Entorno Virtual (Recomendado)
+### 2\. Configurar entorno virtual (recomendado)
 
 ```bash
-# Windows
 python -m venv venv
+# Windows
 venv\Scripts\activate
-
-# Linux/Mac
-python3 -m venv venv
+# Linux/MacOS
 source venv/bin/activate
 ```
 
-### 3. Instalar Dependencias
+### 3\. Instalar dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configurar la Base de Datos
+### 4\. Configurar base de datos
 
 ```bash
 python manage.py migrate
 ```
 
-### 5. Crear un Superusuario (Opcional)
+### 5\. Crear usuario administrador (opcional)
 
 ```bash
 python manage.py createsuperuser
 ```
 
-## 🚀 Ejecución
-
-Para ejecutar la aplicación en modo desarrollo:
+### 6\. Ejecutar servidor de desarrollo
 
 ```bash
 python manage.py runserver
 ```
 
-La aplicación estará disponible en: `http://127.0.0.1:8000/`
+Acceder a la aplicación en: `http://localhost:8000`
 
-![correr la app local](https://github.com/user-attachments/assets/8126b9c1-c61f-4272-9514-27c30922352c)
+-----
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
-```
-mi_proyecto_django/
-├── manage.py                       # Script principal de Django
-├── db.sqlite3                      # Base de datos SQLite
-├── requirements.txt                # Dependencias del proyecto
-├── mi_proyecto/                    # Configuración del proyecto
-│   ├── settings.py                 # Configuración principal
-│   ├── urls.py                     # URLs globales
+```text
+proyecto-logica-difusa/
+├── core/                      # Configuración principal del proyecto
+│   ├── settings.py            # Configuración Django
+│   ├── urls.py                # Rutas principales
 │   └── ...
-└── sistema_fuzzy/                  # Aplicación principal
-    ├── models.py                   # Modelos de base de datos
-    ├── views.py                    # Lógica de vistas
-    ├── urls.py                     # URLs de la aplicación
-    ├── templates/                  # Plantillas HTML
-    │   ├── home.html
-    │   ├── about_mamdani.html
-    │   ├── membership_functions.html
-    │   └── ...
-    └── migrations/                 # Migraciones de BD
-```
-##########################
-# 📚 Análisis de Librerías del Sistema Fuzzy
-
-Este documento describe el uso de cada librería en el sistema de lógica difusa implementado en Django.
-
-## 🔧 Librerías del Framework
-
-### Django
-```python
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib import messages
-from django.http import HttpResponseRedirect, JsonResponse
-from django.urls import reverse
-from django.conf import settings as django_settings
+├── fuzzy_system/              # Aplicación de lógica difusa
+│   ├── fuzzy_logic/           # Lógica de inferencia difusa
+│   │   ├── membership.py      # Funciones de membresía
+│   │   ├── rules.py           # Definición de reglas
+│   │   └── inference.py       # Motor de inferencia
+│   ├── views/                 # Controladores
+│   ├── models.py              # Modelos de datos
+│   ├── templates/             # Plantillas HTML
+│   └── ...
+├── static/                    # Archivos estáticos
+├── media/                     # Archivos subidos
+├── manage.py                  # Script de administración
+└── requirements.txt            # Dependencias del proyecto
 ```
 
-**Uso en el proyecto:**
-- **`render`**: Renderiza templates HTML con contexto de datos
-- **`get_object_or_404`**: Obtiene objetos de la base de datos o retorna error 404
-- **`redirect`**: Redirecciona a otras vistas después de operaciones
-- **`messages`**: Sistema de mensajes flash para notificaciones al usuario
-- **`JsonResponse`**: Retorna respuestas JSON para APIs (`api_stats`)
-- **`django_settings`**: Acceso a configuraciones del proyecto (ruta del CSV)
+-----
 
-## 📊 Librerías de Análisis de Datos
+## Uso del Sistema
 
-### Pandas
-```python
-import pandas as pd
+### Flujo de Trabajo Básico
+
+1.  **Cargar datos**: Subir un archivo CSV con los datos de clientes.
+2.  **Validación**: El sistema verifica el formato y contenido.
+3.  **Procesamiento**: Aplicación de reglas difusas a cada registro.
+4.  **Visualización**: Generación de gráficos y análisis.
+5.  **Exportación**: Opción para guardar resultados.
+
+### Formatos de Entrada
+
+El sistema acepta archivos CSV con las siguientes columnas mínimas:
+
+  * `Tiempo_Suscripcion` (meses)
+  * `Frecuencia_Uso` (veces/semana)
+  * `Tipo_Suscripcion` (Básico/Estándar/Premium)
+
+**Ejemplo de estructura CSV:**
+
+```csv
+ID_Cliente,Tiempo_Suscripcion,Frecuencia_Uso,Tipo_Suscripcion
+1,12,5,Estándar
+2,3,1,Básico
+3,24,10,Premium
 ```
 
-**Uso específico:**
-- **Carga de datos**: `pd.read_csv(csv_path)` - Lee el dataset Netflix_Userbase_Frecuencia.csv
-- **Manipulación de columnas**: Renombrado y verificación de columnas requeridas
-- **Análisis estadístico**: `df.describe()` para generar estadísticas descriptivas
-- **Indexación**: `df.loc[max_satisfaction_idx]` para acceder a registros específicos
-- **Conversión**: `df.to_dict('records')` para convertir DataFrames a diccionarios
+### API de Estadísticas
 
-### NumPy
-```python
-import numpy as np
+El sistema incluye un endpoint REST para acceder a los resultados:
+
+```text
+GET /api/stats/?customer_id=<ID>
 ```
 
-**Uso específico:**
-- **Rangos numéricos**: `np.arange(0, 101, 1)` para crear rangos de valores
-- **Operaciones vectoriales**: `np.zeros_like()`, `np.maximum()`, `np.minimum()`
-- **Agregaciones**: `np.sum()` para cálculos de defuzzificación
-- **Comparaciones**: `np.isnan()` para validar resultados válidos
-- **Mapeo de colores**: `np.linspace()` para gradientes de colores en gráficos
+**Respuesta de ejemplo:**
 
-## 📈 Librerías de Visualización
-
-### Matplotlib
-```python
-import matplotlib.pyplot as plt
-import matplotlib
-matplotlib.use('Agg')  # Backend sin GUI para servidor
+```json
+{
+    "customer_id": 1,
+    "membership_degrees": {
+        "bajo": 0.2,
+        "medio": 0.7,
+        "alto": 0.1
+    },
+    "predicted_satisfaction": 68.5,
+    "statistical_analysis": {
+        "mean": 65.3,
+        "median": 67.0,
+        "std_dev": 12.4
+    }
+}
 ```
 
-**Configuración global:**
-```python
-plt.style.use('default')
-plt.rcParams['figure.figsize'] = (12, 8)
-plt.rcParams['font.size'] = 10
-plt.rcParams['axes.grid'] = True
-plt.rcParams['grid.alpha'] = 0.3
-```
+-----
 
-**Uso específico:**
-- **Gráficos de líneas**: Visualización de funciones de membresía trapezoidales y triangulares
-- **Subplots**: `plt.subplots(2, 2)` para crear layouts de múltiples gráficos
-- **Personalización**: Colores, etiquetas, leyendas y títulos
-- **Rellenos**: `ax.fill_between()` para áreas bajo las curvas
-- **Marcadores**: `ax.scatter()` para puntos específicos en las gráficas
-- **Exportación**: Conversión a base64 para embedding en HTML
+## Personalización
 
-**Tipos de gráficos generados:**
-1. **Funciones de membresía**: 4 subgráficos mostrando las funciones difusas
-2. **Análisis detallado**: Visualización específica de un registro con grados de membresía
-3. **Gráficos de barras**: Representación de grados de membresía activos
+### Añadir Nuevas Reglas
 
-## 🔄 Librerías de Utilidad
-
-### Base64
-```python
-import base64
-```
-
-**Uso específico:**
-- **Codificación de imágenes**: `base64.b64encode(plot_data).decode()` 
-- **Embedding en HTML**: Convierte gráficos matplotlib a strings base64 para mostrar en templates
-
-### IO (BytesIO)
-```python
-from io import BytesIO
-```
-
-**Uso específico:**
-- **Buffer de memoria**: `BytesIO()` para manejar datos de imágenes en memoria
-- **Optimización**: Evita escribir archivos temporales al disco
-- **Pipeline de datos**: Facilita el flujo de datos entre matplotlib y base64
-
-### OS
-```python
-import os
-```
-
-**Uso específico:**
-- **Rutas de archivos**: `os.path.join()` para construcción de rutas multiplataforma
-- **Validación de archivos**: `os.path.exists()` para verificar existencia del CSV
-
-### JSON
-```python
-import json
-```
-
-**Uso específico:**
-- **Respuestas API**: Manejo de datos JSON en la función `api_stats`
-- **Serialización**: Conversión de datos Python a formato JSON
-
-### Warnings
-```python
-import warnings
-warnings.filterwarnings('ignore')
-```
-
-**Uso específico:**
-- **Supresión de advertencias**: Oculta warnings de pandas/numpy durante el procesamiento
-
-## 🧮 Algoritmos de Lógica Difusa
-
-### Funciones de Membresía Implementadas
+Puedes editar el archivo `fuzzy_system/fuzzy_logic/rules.py` y definir nuevas reglas en el siguiente formato:
 
 ```python
-def trapmf(x, a, b, c, d):
-    """Función de membresía trapezoidal"""
-    # Implementación manual sin scikit-fuzzy
-    
-def trimf(x, a, b, c):
-    """Función de membresía triangular"""
-    # Implementación manual sin scikit-fuzzy
+new_rule = {
+    'conditions': [
+        ('Tiempo_Suscripcion', 'largo'),
+        ('Frecuencia_Uso', 'alta'),
+        ('Tipo_Suscripcion', 'Premium')
+    ],
+    'conclusion': ('Satisfaccion', 'muy_alta')
+}
 ```
 
-**Características:**
-- **Implementación nativa**: Sin dependencias externas de lógica difusa
-- **Funciones trapezoidales**: Para variables con rangos amplios
-- **Funciones triangulares**: Para variables con picos específicos
-- **Evaluación punto a punto**: Cálculo eficiente de grados de membresía
+### Modificar Funciones de Membresía
 
-## 🔍 Flujo de Procesamiento
+Ajusta los parámetros en `fuzzy_system/fuzzy_logic/membership.py`:
 
-### Pipeline de Datos
-1. **Carga**: Pandas lee el CSV
-2. **Validación**: Verificación de columnas requeridas
-3. **Procesamiento**: Aplicación de reglas difusas a cada registro
-4. **Visualización**: Matplotlib genera gráficos
-5. **Presentación**: Django renderiza resultados en HTML
-
-### Variables del Sistema
-- **Entrada**: Tiempo de suscripción, Frecuencia de uso, Tipo de suscripción
-- **Salida**: Nivel de satisfacción predicho
-- **Reglas**: 27 reglas difusas implementadas
-
-## 📋 Dependencias Requeridas
-
-```txt
-Django>=3.2
-pandas>=1.3.0
-numpy>=1.21.0
-matplotlib>=3.4.0
+```python
+# Ejemplo para tiempo de suscripción
+TIME_MEMBERSHIP = {
+    'corto': {'type': 'trapmf', 'params': [0, 0, 3, 6]},
+    'medio': {'type': 'trimf', 'params': [3, 12, 24]},
+    'largo': {'type': 'trapmf', 'params': [12, 24, 60, 60]}
+}
 ```
 
-## 🚀 Optimizaciones Implementadas
+-----
 
-- **Backend Agg**: Matplotlib sin GUI para entornos de servidor
-- **Manejo de memoria**: BytesIO para procesamiento eficiente de imágenes
-- **Caching**: Configuración de matplotlib para reutilización
-- **Validación robusta**: Manejo de errores y datos faltantes
+## Solución de Problemas
 
-## 📊 Métricas del Sistema
+| Problema                      | Solución                                      |
+| :---------------------------- | :-------------------------------------------- |
+| No se encuentra el módulo Django | `pip install django`                          |
+| Puerto en uso                 | `python manage.py runserver 8080`             |
+| Error en migraciones          | `python manage.py migrate --run-syncdb`       |
+| Problemas con archivos CSV    | Verificar formato y columnas requeridas       |
 
-- **Total de reglas**: 27 reglas difusas
-- **Variables de entrada**: 3 (tiempo, frecuencia, suscripción)
-- **Variable de salida**: 1 (satisfacción)
-- **Funciones de membresía**: 9 funciones implementadas
-- **Precisión del sistema**: 95.2% (valor mostrado en dashboard)
-#####################
+-----
 
+## Contribución
 
-## 📊 Funcionalidades
+¡Las contribuciones son bienvenidas\! Sigue estos pasos para contribuir:
 
-### 1. Análisis de Satisfacción
-- Carga de archivos CSV con validación automática
-- Aplicación de 27 reglas difusas predefinidas
-- Cálculo de grados de membresía
-- Generación de estadísticas y resultados
+1.  Haz fork del proyecto.
+2.  Crea una rama para tu nueva característica: `git checkout -b feature/awesome-feature`.
+3.  Haz commit de tus cambios: `git commit -am 'Add awesome feature'`.
+4.  Haz push a la rama: `git push origin feature/awesome-feature`.
+5.  Abre un Pull Request.
 
-### 2. Funciones de Membresía Interactivas
-- Experimentación con diferentes parámetros
-- Visualización en tiempo real
-- Herramientas educativas para comprensión de lógica difusa
+-----
 
-### 3. Información Educativa
-- Explicación detallada del modelo Mamdani
-- Historia y conceptos de lógica difusa
-- Beneficios y aplicaciones
+## Licencia
 
-## 🔄 Flujo de Trabajo
+Distribuido bajo la **licencia MIT**. Consulta el archivo `LICENSE` para más información.
 
-1. **Carga de Datos**: El usuario carga un archivo CSV
-2. **Validación**: El sistema valida la estructura y columnas
-3. **Procesamiento**: Se aplican las reglas difusas a cada registro
-4. **Análisis**: Se calculan estadísticas y se generan visualizaciones
-5. **Resultados**: Se presenta el análisis completo al usuario
+-----
 
-## 🛡️ Consideraciones de Seguridad
+## Contacto
 
-- Validación estricta de archivos CSV
-- Sanitización de datos de entrada
-- Manejo seguro de archivos temporales
-- Protección contra inyección de código
-![Despliegue y vista de aplicación web](https://github.com/user-attachments/assets/5dd7baf4-6df4-4d17-990a-e8dd7a5af0d0)
+  * Matías Sánchez - `@tu-usuario` - `email@example.com`
+  * Robert Reyes - `@tu-usuario` - `email@example.com`
 
-
-## 🐛 Solución de Problemas
-
-### Error: "No module named 'django'"
-```bash
-pip install django
-```
-
-### Error: "Port already in use"
-```bash
-python manage.py runserver 8080
-```
-
-### Error de base de datos
-```bash
-python manage.py migrate --run-syncdb
-```
-
-## 📝 Desarrollo
-
-### Agregar Nuevas Reglas Difusas
-1. Modificar el archivo `views.py` en la sección de definición de reglas
-2. Actualizar la documentación correspondiente
-3. Ejecutar pruebas para validar el funcionamiento
-
-### Personalizar Funciones de Membresía
-1. Editar los parámetros en la vista correspondiente
-2. Ajustar las visualizaciones en `templates/membership_functions.html`
-   
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo `LICENSE` para más detalles.
-
-## 👥 Autores
-
-- **Matías Sánchez** - Desarrollodor del sistema de lógica difusa
-- **Robert Reyes** - Desarrollodor del sistema de lógica difusa
-
-## 🙏 Agradecimientos
-
-- Profesor Jorge Morris arredondo por su acompañamiento y tutoria constante.
-
----
+**Enlace del proyecto:** [https://github.com/tu-usuario/proyecto-logica-difusa](https://github.com/tu-usuario/proyecto-logica-difusa)
